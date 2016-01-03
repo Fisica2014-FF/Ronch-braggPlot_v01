@@ -1,10 +1,11 @@
 //============================================================================
-// Name        : ECLIPSE_MARS_PROJECT_CPP11.cpp
+// Name        : bP_01_main.cpp
 // Author      : Francesco Forcher
-// Version     : 0.1
-// Copyright   : All rights reserved © 2015
+// Version     : 1.1
+// TODO Fare le descrizioni!!!!
 // Description : Hello World in C++, Ansi-style
 //============================================================================
+
 
 #include <iostream>
 #include <memory>
