@@ -2,8 +2,7 @@
 // Name        : bP_01_main.cpp
 // Author      : Francesco Forcher
 // Version     : 1.1
-// TODO Fare le descrizioni!!!!
-// Description : Hello World in C++, Ansi-style
+// Description : Modify Mean_v04 and produce graphs of energy loss
 //============================================================================
 
 
