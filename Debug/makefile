@@ -8,6 +8,7 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
+-include src/cpp/subdir.mk
 -include src/subdir.mk
 -include subdir.mk
 -include objects.mk
@@ -44,7 +45,7 @@ all: Ronch_braggPlot_v01
 Ronch_braggPlot_v01: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C++ Linker'
-	g++  -o "Ronch_braggPlot_v01" $(OBJS) $(USER_OBJS) $(LIBS)
+	g++ $(OBJS) $(USER_OBJS) $(LIBS) -L~/ROOT/ROOT_6_06_00/libs -lCore -lRIO -lNet -lHist -lGraf -lGraf3d -lGpad -lTree -lRint -lPostscript -lMatrix -lPhysics -lMathCore -lThread -lMultiProc -pthread -lm -ldl -rdynamic -o "Ronch_braggPlot_v01"
 	@echo 'Finished building target: $@'
 	@echo ' '
 
