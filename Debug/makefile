@@ -45,7 +45,7 @@ all: Ronch_braggPlot_v01
 Ronch_braggPlot_v01: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C++ Linker'
-	g++ $(OBJS) $(USER_OBJS) $(LIBS) -L~/ROOT/ROOT_6_06_00/libs -lCore -lRIO -lNet -lHist -lGraf -lGraf3d -lGpad -lTree -lRint -lPostscript -lMatrix -lPhysics -lMathCore -lThread -lMultiProc -pthread -lm -ldl -rdynamic -o "Ronch_braggPlot_v01"
+	g++ $(OBJS) $(USER_OBJS) $(LIBS) -L~/ROOT/ROOT_6_06_00/libs -lCore -lRIO -lNet -lHist -lGraf -lGraf3d -lGpad -lTree -lRint -lPostscript -lMatrix -lPhysics -lMathCore -lThread -lMultiProc -pthread -lm -ldl -rdynamic -o  "Ronch_braggPlot_v01"
 	@echo 'Finished building target: $@'
 	@echo ' '
 

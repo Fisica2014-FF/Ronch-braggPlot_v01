@@ -48,7 +48,7 @@ void EnergyDist::endJob() {
 
 	//... open ROOT file ...
 	TDirectory* currentDir = gDirectory;
-	TFile* file = new TFile("braggPlot_output", "RECREATE");
+	TFile* file = new TFile("braggPlot_output.root", "RECREATE");
 
 	// fill distributions with mean and rms energies
 
@@ -56,7 +56,6 @@ void EnergyDist::endJob() {
 	auto NPOINTS = Event::minSize();
 
 	// loop over distributions
-	//... ?
 	for (auto& bc : vbraggCurv) {
 		// get Bragg curve informations:
 
@@ -74,12 +73,12 @@ void EnergyDist::endJob() {
 		bc->bragg_statistic->compute();
 
 		// get mean and rms energies
-		unsigned numevents = bc->bragg_statistic->eMean().size();
+		//unsigned NPOINTS = bc->bragg_statistic->eMean().size();
 		const auto& mean = bc->bragg_statistic->eMean();
 		const auto& rms = bc->bragg_statistic->eRMS();
 
 		// loop over points
-		for (unsigned i = 1; i <= numevents; ++i) {
+		for (unsigned i = 1; i <= NPOINTS; ++i) {
 			// set center and error values in the graph
 			// by using SetBinContent and SetBinError, bin count starts from 1
 			bc->braggStat_graph->SetBinContent(i, mean[i - 1]);
