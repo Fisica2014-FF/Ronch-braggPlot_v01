@@ -36,21 +36,21 @@ int main(int argc, char* argv[]) {
 	aList.push_back(new EnergyDist());
 
 	// initialize all analyzers
-	for (auto as : aList) {
+	for (auto& as : aList) {
 		as->beginJob();
 	}
 
 	// loop over events
 	const Event* ev;
 	while ((ev = es->get())) {
-		for (auto as : aList) {
+		for (auto& as : aList) {
 			as->process(*ev);
 		}
 		delete ev;
 	}
 
 	// finalize all analyzers
-	for (auto as : aList) {
+	for (auto& as : aList) {
 		as->endJob();
 	}
 

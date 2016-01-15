@@ -6,21 +6,22 @@
 using namespace std;
 
 // read data from file "name"
-EventReadFromFile::EventReadFromFile( const string& name ) : file(new ifstream( name )) {
-
+EventReadFromFile::EventReadFromFile(const string& name) :
+		file(new ifstream(name)) {
+	if (!(*file)) {
+		cerr << "[ERROR] File not opened" << endl;
+		throw -1;
+	}
 }
-
 
 EventReadFromFile::~EventReadFromFile() {
-  delete file;
+	delete file;
 }
-
 
 // get an event
 const Event* EventReadFromFile::get() {
-  return readFile();
+	return readFile();
 }
-
 
 // read an event
 const Event* EventReadFromFile::readFile() {

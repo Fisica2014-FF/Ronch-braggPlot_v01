@@ -1,14 +1,15 @@
 //... include header files ...
 
-
 #include <TDirectory.h>
 #include <TFile.h>
 #include <TH1.h>
 #include <TH1F.h>
 #include <string>
+#include <iostream>
 
 #include "../EnergyDist.h"
 #include "../BraggStatistic.h"
+#include "../dbg_macro.h"
 
 using namespace std;
 
@@ -47,7 +48,7 @@ void EnergyDist::endJob() {
 
 	//... open ROOT file ...
 	TDirectory* currentDir = gDirectory;
-	TFile* file = new TFile("braggPLot_output", "RECREATE");
+	TFile* file = new TFile("braggPlot_output", "RECREATE");
 
 	// fill distributions with mean and rms energies
 
@@ -81,8 +82,10 @@ void EnergyDist::endJob() {
 		for (unsigned i = 1; i <= numevents; ++i) {
 			// set center and error values in the graph
 			// by using SetBinContent and SetBinError, bin count starts from 1
-			 bc->braggStat_graph->SetBinContent(i,mean[i-1]);
-			 bc->braggStat_graph->SetBinError(i,rms[i-1]);
+			bc->braggStat_graph->SetBinContent(i, mean[i - 1]);
+			bc->braggStat_graph->SetBinError(i, rms[i - 1]);
+			DBG(cerr << i << ": " << mean[i - 1] << " +/- " << rms[i - 1] << endl;
+				, ;)
 		}
 		// save distribution
 		bc->braggStat_graph->Write();
@@ -92,7 +95,6 @@ void EnergyDist::endJob() {
 	delete file;
 	currentDir->cd();
 
-
 	return;
 
 }
@@ -100,7 +102,7 @@ void EnergyDist::endJob() {
 // function to be called for each event
 void EnergyDist::process(const Event& ev) {
 	// loop over energy distributions and pass event to each of them
-	for (auto bcurve : vbraggCurv) {
+	for (auto& bcurve : vbraggCurv) {
 		// The energy ranges are mutually exclusive, so
 		// we can simply call them for every event.
 		bcurve->bragg_statistic->add(ev);
